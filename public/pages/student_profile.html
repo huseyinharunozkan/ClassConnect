@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Öğrenci Profil | ClassConnect</title>
+  <script src="../js/head_loader.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .profile-photo-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+    }
+    .profile-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .profile-photo-wrapper input {
+      position: absolute;
+      bottom: 0; right: 0;
+      opacity: 0; width: 100%; height: 100%;
+      cursor: pointer;
+    }
+    .profile-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <div id="navbar-placeholder"></div>
+  <script src="../js/navbar_loader.js"></script>
+
+  <main class="flex-fill">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="card shadow p-4 profile-card">
+          <h2 class="text-center mb-4">🎓 Profil Düzenle</h2>
+
+          <form id="profileForm" enctype="multipart/form-data">
+            <div class="profile-photo-wrapper">
+              <img id="profilePreview" src="/uploads/default.png" alt="Profil Fotoğrafı">
+              <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
+            </div>
+
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Ad Soyad</label>
+              <input type="text" class="form-control" id="fullName" name="fullName" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-posta</label>
+              <input type="email" class="form-control" id="email" name="email" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Telefon</label>
+              <input type="tel" class="form-control" id="phone" name="phone" placeholder="+90 5xx xxx xx xx">
+            </div>
+            <div class="mb-3">
+              <label for="city" class="form-label">Şehir</label>
+              <select class="form-select" id="city" name="city" required>
+                <option value="">Şehir seçiniz</option>
+                <option>Adana</option>
+                <option>Adıyaman</option>
+                <option>Afyonkarahisar</option>
+                <option>Ağrı</option>
+                <option>Amasya</option>
+                <option>Ankara</option>
+                <option>Antalya</option>
+                <option>Artvin</option>
+                <option>Aydın</option>
+                <option>Balıkesir</option>
+                <option>Bartın</option>
+                <option>Batman</option>
+                <option>Bayburt</option>
+                <option>Bilecik</option>
+                <option>Bingöl</option>
+                <option>Bitlis</option>
+                <option>Bolu</option>
+                <option>Burdur</option>
+                <option>Bursa</option>
+                <option>Çanakkale</option>
+                <option>Çankırı</option>
+                <option>Çorum</option>
+                <option>Denizli</option>
+                <option>Diyarbakır</option>
+                <option>Düzce</option>
+                <option>Edirne</option>
+                <option>Elazığ</option>
+                <option>Erzincan</option>
+                <option>Erzurum</option>
+                <option>Eskişehir</option>
+                <option>Gaziantep</option>
+                <option>Giresun</option>
+                <option>Gümüşhane</option>
+                <option>Hakkari</option>
+                <option>Hatay</option>
+                <option>Iğdır</option>
+                <option>Isparta</option>
+                <option>İstanbul</option>
+                <option>İzmir</option>
+                <option>Kahramanmaraş</option>
+                <option>Karabük</option>
+                <option>Karaman</option>
+                <option>Kars</option>
+                <option>Kastamonu</option>
+                <option>Kayseri</option>
+                <option>Kilis</option>
+                <option>Kırıkkale</option>
+                <option>Kırklareli</option>
+                <option>Kırşehir</option>
+                <option>Kocaeli</option>
+                <option>Konya</option>
+                <option>Kütahya</option>
+                <option>Malatya</option>
+                <option>Manisa</option>
+                <option>Mardin</option>
+                <option>Mersin</option>
+                <option>Muğla</option>
+                <option>Muş</option>
+                <option>Nevşehir</option>
+                <option>Niğde</option>
+                <option>Ordu</option>
+                <option>Osmaniye</option>
+                <option>Rize</option>
+                <option>Sakarya</option>
+                <option>Samsun</option>
+                <option>Siirt</option>
+                <option>Sinop</option>
+                <option>Sivas</option>
+                <option>Şanlıurfa</option>
+                <option>Şırnak</option>
+                <option>Tekirdağ</option>
+                <option>Tokat</option>
+                <option>Trabzon</option>
+                <option>Tunceli</option>
+                <option>Uşak</option>
+                <option>Van</option>
+                <option>Yalova</option>
+                <option>Yozgat</option>
+                <option>Zonguldak</option>
+              </select>
+            </div>
+            
+            <script>
+              const city = document.getElementById('city');
+              // açıldığında 5 satır göster
+              city.addEventListener('focus', function() {
+                this.size = 5;
+              });
+              // seçim yapıldığında kapanması için
+              city.addEventListener('change', function() {
+                this.blur();
+              });
+              // dropdown’dan ayrıldığında tekrar 1 satıra dön
+              city.addEventListener('blur', function() {
+                this.size = 1;
+              });
+            </script>
+            
+            <div class="mb-3">
+              <label for="address" class="form-label">Adres</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                name="address"
+                placeholder="Mahalle, Sokak, Apartman/Daire No, İlçe"
+                required
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="school" class="form-label">Okul</label>
+              <input type="text" class="form-control" id="school" name="school">
+            </div>
+            <div class="mb-3">
+              <label for="birthDate" class="form-label">Doğum Tarihi</label>
+              <input type="date" class="form-control" id="birthDate" name="birthDate">
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+          </form>
+          <hr class="my-4" />
+          <h4 class="text-center mb-3">🔒 Şifre Değiştir</h4>
+          <form id="passwordForm" class="text-start">
+            <div class="mb-3">
+              <label class="form-label">Eski Şifre</label>
+              <input type="password" class="form-control" id="oldPassword" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Yeni Şifre</label>
+              <input type="password" class="form-control" id="newPassword" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Yeni Şifre Tekrar</label>
+              <input type="password" class="form-control" id="confirmNewPassword" required />
+            </div>
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-warning w-100">🔒 Şifreyi Değiştir</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+  <footer id="footer-placeholder" class="mt-auto">
+    <script src="../js/footer_loader.js"></script>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const API_BASE = 'https://classconnect.com.tr';
+
+    // Profil fotoğraf önizleme
+    document.getElementById('profilePhoto').addEventListener('change', e => {
+      const [file] = e.target.files;
+      if (file) document.getElementById('profilePreview').src = URL.createObjectURL(file);
+    });
+
+    // Profil bilgilerini çek ve forma doldur
+    async function fetchProfile() {
+      try {
+        const res = await fetch(`${API_BASE}/api/student/profile`, {
+          credentials: 'include'
+        });
+        const data = await res.json();
+        // fullName ve email mutlaka gelir
+        document.getElementById('fullName').value = data.full_name || '';
+        document.getElementById('email').value    = data.email      || '';
+        document.getElementById('phone').value    = data.phone      || '';
+        document.getElementById('city').value     = data.city       || '';
+        document.getElementById('school').value   = data.school     || '';
+        if (data.birth_date) {
+          const d = new Date(data.birth_date);
+          document.getElementById('birthDate').value =
+            `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        }
+        if (data.profile_photo) {
+          document.getElementById('profilePreview').src =
+            data.profile_photo.startsWith('/uploads/') ? data.profile_photo : `/uploads/${data.profile_photo}`;
+        }
+      } catch (err) {
+        console.error("Profil çekme hatası:", err);
+      }
+    }
+
+    // Form gönderme
+    document.getElementById('profileForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/student/update-profile`, {
+          method: 'POST',
+          credentials: 'include',
+          body: fd
+        });
+        const result = await res.json();
+        if (result.success) {
+          alert('Profil güncellendi, dashboard’a yönlendiriliyorsunuz.');
+          window.location.href = '/pages/student_dashboard.html';
+        } else {
+          alert('Hata: ' + (result.message||''));
+        }
+      } catch (err) {
+        console.error("Güncelleme hatası:", err);
+        alert("Profil güncelleme sırasında hata oluştu.");
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', fetchProfile);
+    // adress Büşra ekledi (282- 325)
+    document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const res = await fetch('/api/student/address');
+      if (!res.ok) return;
+      const { neighborhood, street, apartment, district } = await res.json();
+      document.getElementById('address').value =
+        [neighborhood, street, apartment, district]
+          .filter(Boolean)            // boş alanları atar
+          .join(', ');
+    } catch (e) {
+      console.error('Adres çekme hatası', e);
+    }
+  });
+
+
+  // 6) Şifre değiştirme – Öğrenci için
+document.getElementById("passwordForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const oldP = document.getElementById("oldPassword").value.trim();
+  const newP = document.getElementById("newPassword").value.trim();
+  const cP = document.getElementById("confirmNewPassword").value.trim();
+
+  if (newP !== cP) {
+    return alert("❌ Yeni şifreler eşleşmiyor!");
+  }
+
+  try {
+    const res = await fetch("/api/student/profile/change-password", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ oldPassword: oldP, newPassword: newP }),
+    });
+
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.message);
+    
+    alert("✅ Şifreniz başarıyla değiştirildi!");
+    e.target.reset();
+  } catch (err) {
+    console.error("Şifre değiştirme hatası:", err);
+    alert(`❌ Şifre değiştirilemedi: ${err.message}`);
+  }
+});
+  </script>
+
+</body>
+</html>

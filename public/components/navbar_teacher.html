@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md py-0 px-4" style="background: rgba(255, 255, 255, 0.921);">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="index.html" title="Anasayfa">
+            <img src="../media/logo.png" alt="Logo" width="45" height="45" class="rounded">
+            <span style="color: #43cad6; font-size: 1.4rem;">ClassConnect</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#teacherNavbar"
+            aria-controls="teacherNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="teacherNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="teacher_dashboard.html">Panelim</a></li>
+                <li class="nav-item"><a class="nav-link" href="after_login_teacher.html">Derslerim</a></li>
+            </ul>
+
+            <!-- Profil Dropdown -->
+            <div class="dropdown profile-info">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="teacherMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img id="teacherProfilePic" src="../media/default_avatar.webp" alt="Profil" width="40" height="40"
+                        class="rounded-circle">
+                    <!-- <span id="teacherFullName" class="fw-bold">Eto</span> -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="teacherMenu">
+                    <li><a class="dropdown-item" href="teacher_profile_edit.html">👤 Profilimi Düzenle</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a id="logout-btn" class="dropdown-item text-danger" href="#">🚪 Çıkış Yap</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

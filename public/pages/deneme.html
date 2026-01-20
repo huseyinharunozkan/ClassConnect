@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Öğretmen Bul | ClassConnect</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="../js/head_loader.js" defer></script>
+  <style>
+    .profile-img { width:100%; height:140px; object-fit:cover; border-radius:12px 12px 0 0; }
+    .card-title { font-size:1rem; font-weight:bold; margin-bottom:5px; }
+    .card.h-100 { display:flex; flex-direction:column; }
+    .card-body { flex:1; display:flex; flex-direction:column; }
+    .list-section ul { padding-left:1.5rem; list-style:inside; margin-top:0.5rem; }
+    .available-days { padding:0 1rem; margin-bottom:0.5rem; font-size:0.9rem; text-align:left; }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <div id="navbar-placeholder"></div>
+  <script src="../js/navbar_loader.js"></script>
+
+  <main class="flex-fill">
+    <div class="container my-5">
+      <div class="row">
+
+        <!-- Filtre Alanı -->
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Filtrele</h5>
+          <form id="filterForm">
+            <div class="mb-3">
+              <label class="form-label">Ders</label>
+              <select id="subject" class="form-select">
+                <option value="">Tüm Dersler</option>
+                <option value="İngilizce">İngilizce</option>
+                <option value="Matematik">Matematik</option>
+                <option value="Fen Bilimleri">Fen Bilimleri</option>
+                <option value="Türkçe">Türkçe</option>
+                <option value="Sosyal Bilgiler">Sosyal Bilgiler</option>
+                <option value="Coğrafya">Coğrafya</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Ders Ücreti (₺)</label>
+              <div class="d-flex gap-2">
+                <input type="number" id="minPrice" class="form-control" placeholder="Min">
+                <input type="number" id="maxPrice" class="form-control" placeholder="Max">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Şehir</label>
+              <select id="city" class="form-select">
+                <option value="">Tüm Şehirler</option>
+                  <option>Adana</option>
+                  <option>Adıyaman</option>
+                  <option>Afyonkarahisar</option>
+                  <option>Ağrı</option>
+                  <option>Amasya</option>
+                  <option>Ankara</option>
+                  <option>Antalya</option>
+                  <option>Artvin</option>
+                  <option>Aydın</option>
+                  <option>Balıkesir</option>
+                  <option>Bartın</option>
+                  <option>Batman</option>
+                  <option>Bayburt</option>
+                  <option>Bilecik</option>
+                  <option>Bingöl</option>
+                  <option>Bitlis</option>
+                  <option>Bolu</option>
+                  <option>Burdur</option>
+                  <option>Bursa</option>
+                  <option>Çanakkale</option>
+                  <option>Çankırı</option>
+                  <option>Çorum</option>
+                  <option>Denizli</option>
+                  <option>Diyarbakır</option>
+                  <option>Düzce</option>
+                  <option>Edirne</option>
+                  <option>Elazığ</option>
+                  <option>Erzincan</option>
+                  <option>Erzurum</option>
+                  <option>Eskişehir</option>
+                  <option>Gaziantep</option>
+                  <option>Giresun</option>
+                  <option>Gümüşhane</option>
+                  <option>Hakkari</option>
+                  <option>Hatay</option>
+                  <option>Iğdır</option>
+                  <option>Isparta</option>
+                  <option>İstanbul</option>
+                  <option>İzmir</option>
+                  <option>Kahramanmaraş</option>
+                  <option>Karabük</option>
+                  <option>Karaman</option>
+                  <option>Kars</option>
+                  <option>Kastamonu</option>
+                  <option>Kayseri</option>
+                  <option>Kilis</option>
+                  <option>Kırıkkale</option>
+                  <option>Kırklareli</option>
+                  <option>Kırşehir</option>
+                  <option>Kocaeli</option>
+                  <option>Konya</option>
+                  <option>Kütahya</option>
+                  <option>Malatya</option>
+                  <option>Manisa</option>
+                  <option>Mardin</option>
+                  <option>Mersin</option>
+                  <option>Muğla</option>
+                  <option>Muş</option>
+                  <option>Nevşehir</option>
+                  <option>Niğde</option>
+                  <option>Ordu</option>
+                  <option>Osmaniye</option>
+                  <option>Rize</option>
+                  <option>Sakarya</option>
+                  <option>Samsun</option>
+                  <option>Siirt</option>
+                  <option>Sinop</option>
+                  <option>Sivas</option>
+                  <option>Şanlıurfa</option>
+                  <option>Şırnak</option>
+                  <option>Tekirdağ</option>
+                  <option>Tokat</option>
+                  <option>Trabzon</option>
+                  <option>Tunceli</option>
+                  <option>Uşak</option>
+                  <option>Van</option>
+                  <option>Yalova</option>
+                  <option>Yozgat</option>
+                  <option>Zonguldak</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Müsait Günler</label>
+              <div class="dropdown">
+                <button id="dayDropdownBtn" class="btn btn-outline-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
+                  Tüm Günler
+                </button>
+                <ul class="dropdown-menu w-100 p-2" id="dayDropdown">
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Pazartesi"> Pazartesi</label></li>
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Salı"> Salı</label></li>
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Çarşamba"> Çarşamba</label></li>
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Perşembe"> Perşembe</label></li>
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Cuma"> Cuma</label></li>
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Cumartesi"> Cumartesi</label></li>
+                  <li><label class="d-flex gap-2"><input type="checkbox" class="day-checkbox" value="Pazar"> Pazar</label></li>
+                </ul>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+            <button type="button" id="clearFilters" class="btn btn-outline-secondary w-100 mt-2">
+              Filtreleri Temizle
+            </button>
+          </form>
+        </div>
+
+        <!-- Öğretmen Kartları -->
+        <div class="col-md-9">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="teacherCardsContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer-placeholder" class="mt-auto"></footer>
+  <script src="../js/footer_loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+  <script>
+    let teachers = [];
+
+    // --- FETCH + APPLY FILTER ---
+    async function fetchTeachers() {
+      const res = await fetch('/api/teacher/list',{credentials:'include'});
+      const data = await res.json();
+      if (data.success) teachers = data.teachers;
+      applyFilters();
+    }
+   function applyFilters(){
+  const subject = document.getElementById("subject").value,
+        minP    = document.getElementById("minPrice").value,
+        maxP    = document.getElementById("maxPrice").value,
+        city    = document.getElementById("city").value,
+        days    = Array.from(document.querySelectorAll(".day-checkbox:checked")).map(cb => cb.value),
+        noF     = !subject && !minP && !maxP && !city && days.length === 0;
+
+  const list = noF ? teachers : teachers.filter(t => {
+    let lp = {};
+    let av = [];
+
+    try {
+      lp = typeof t.lesson_prices === "string" ? JSON.parse(t.lesson_prices) : t.lesson_prices || {};
+    } catch (e) {
+      console.warn("lesson_prices parse error:", e);
+    }
+
+    try {
+      av = typeof t.availability === "string" ? JSON.parse(t.availability) : t.availability || [];
+    } catch (e) {
+      console.warn("availability parse error:", e);
+    }
+
+    let ok = true;
+
+    // Ders seçimi
+    if (subject && !lp[subject]) ok = false;
+
+    // Fiyat aralığı
+    if (ok && subject) {
+      const p = +lp[subject];
+      if (minP && p < +minP) ok = false;
+      if (maxP && p > +maxP) ok = false;
+    }
+    if (ok && (minP || maxP) && !subject) {
+      const prices = Object.values(lp).map(Number);
+      if (minP && !prices.some(p => p >= +minP)) ok = false;
+      if (maxP && !prices.some(p => p <= +maxP)) ok = false;
+    }
+
+    // Gün kontrolü
+    if (ok && days.length) {
+      const availableDays = av.map(a => a.day);
+      if (!days.some(d => availableDays.includes(d))) ok = false;
+    }
+
+    // Şehir kontrolü
+    if (ok && city && (t.location || '').toLowerCase() !== city.toLowerCase()) ok = false;
+
+    return ok;
+  });
+
+  renderTeachers(list);
+}
+    // --- RENDER CARDS + MODALS ---
+ function renderTeachers(list) {
+  const c = document.getElementById("teacherCardsContainer");
+  c.innerHTML = "";
+
+  if (!list.length) {
+    c.innerHTML = `<div class="col"><p class="text-center">Uygun öğretmen bulunamadı.</p></div>`;
+    return;
+  }
+
+  list.forEach((t, i) => {
+    console.log("Öğretmen verisi:", JSON.stringify(t));
+
+    // lesson_prices güvenli parse
+    let lp = {};
+    try {
+      lp = typeof t.lesson_prices === "string" ? JSON.parse(t.lesson_prices) : t.lesson_prices || {};
+    } catch (err) {
+      console.warn("lesson_prices JSON hatası:", err);
+    }
+
+    const lessons = Object.entries(lp)
+      .map(([l, p]) => `<li>${l} - ${p}₺</li>`)
+      .join("");
+
+    // availability güvenli parse
+    let av = [];
+    try {
+      av = typeof t.availability === "string" ? JSON.parse(t.availability) : t.availability || [];
+    } catch (err) {
+      console.warn("availability JSON hatası:", err);
+    }
+
+    const daysText = [...new Set(av.map(a => a.day))].join(" - ") || "Belirtilmemiş";
+    const modalId = `modal-${i}`;
+
+        // Kart
+        c.insertAdjacentHTML('beforeend',`
+          <div class="col">
+            <div class="card h-100 d-flex flex-column">
+              <img src="${t.profile_photo||'/uploads/default.png'}" class="profile-img">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center">${t.full_name}</h5>
+                <p class="text-muted text-center">${t.location||'-'}</p>
+                <div class="list-section mb-2">
+                  <strong>Dersler:</strong>
+                  <ul style="font-size:1.05rem;">${lessons}</ul>
+                </div>
+              </div>
+              <div class="available-days">
+                <strong>Uygun Günler:</strong><br>
+                <small style="font-size:1.05rem;">${daysText}</small>
+              </div>
+              <div class="p-3 mt-auto">
+                <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#${modalId}">
+                  Randevu Al
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="${modalId}" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title">${t.full_name} | Randevu Talebi</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-4 text-center">
+                      <img src="${t.profile_photo||'/uploads/default.png'}" class="img-fluid rounded-4 mb-3">
+                      <p><strong>Lokasyon:</strong> ${t.location||'-'}</p>
+                      <p><strong>E-posta:</strong> ${t.email}</p>
+                      <p><strong>Üniversite:</strong> ${t.university||'-'}</p>
+                      <p><strong>Fakülte:</strong> ${t.faculty||'-'}</p>
+                      <p><strong>Bölüm:</strong> ${t.department||'-'}</p>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="mb-3">
+                    <!-- Hakkımda -->
+                    <label><strong>Hakkımda</strong></label>
+                   <p class="about-me-text" style="white-space: pre-wrap;">${t.about_me || 'Öğretmen henüz bir açıklama eklemedi.'}</p>
+                      <!-- Ders Seçimi -->
+                      <div class="mb-3">
+                        <label><strong>Ders Seç:</strong></label>
+                        <select class="form-select appointment-lesson mb-3">
+                          <option value="">Ders Seçiniz</option>
+                          ${Object.entries(lp).map(([l,p])=>`<option value="${l}">${l} (${p}₺)</option>`).join("")}
+                        </select>
+                      </div>
+                      <!-- Tarih Seçimi -->
+                      <div class="mb-3">
+                        <label><strong>Tarih:</strong></label>
+                        <input type="text" class="form-control appointment-date-input">
+                      </div>
+                      <!-- Aralık Seçimi -->
+                      <div class="mb-3">
+                        <label><strong>Aralık Seç:</strong></label>
+                        <select class="form-select appointment-range mb-3">
+                          <option value="">Önce tarih seçiniz</option>
+                        </select>
+                      </div>
+                      <!-- Saat Seçimi -->
+                      <div class="mb-3 row gx-2">
+                        <div class="col">
+                          <label><strong>Başlangıç:</strong></label>
+                          <select class="form-select start-select"></select>
+                        </div>
+                        <div class="col">
+                          <label><strong>Bitiş:</strong></label>
+                          <select class="form-select end-select"></select>
+                        </div>
+                      </div>
+                      <!-- Randevu Al Butonu -->
+                      <button class="btn btn-primary w-100 mt-3 btn-book" data-teacher-id="${t.t_id}">
+                        Randevu Al
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Kapat
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        `);
+      });
+      function convertToTurkishDate(isoDateStr) {
+  const [yyyy, mm, dd] = isoDateStr.split("-");
+  return `${dd}-${mm}-${yyyy}`;
+}
+      // modal açılınca flatpickr + aralık + saat + buton
+      document.querySelectorAll('.modal').forEach((m, idx) => {
+        m.addEventListener('shown.bs.modal', () => {
+
+          let availability = teachers[idx].availability || [];
+          console.log(JSON.stringify(availability))
+          availability = JSON.parse(availability)
+          const dateInput     = m.querySelector('.appointment-date-input');
+          const rangeSel      = m.querySelector('.appointment-range');
+
+          // takvim
+          flatpickr(dateInput, {
+            dateFormat:'Y-m-d',
+            minDate: 'today',
+            maxDate: new Date().fp_incr(30),
+            enable: [ d => {
+              const dow = d.toLocaleDateString("tr-TR", { weekday: "long" });
+              return availability.some(av => av.day === capitalize(dow));
+            }],
+            onChange: (_, dateStr) => populateRangeOptions(m, availability, dateStr)
+          });
+
+          // başta aralıkları doldur
+          populateRangeOptions(m, availability, dateInput.value);
+          // buton handler
+          m.querySelector('.btn-book').onclick = () => handleSingleBooking(m);
+        });
+      });
+    }
+
+    // 2) Aralık listesini doldur
+    function populateRangeOptions(modalEl, availability, dateStr) {
+  const rangeSel = modalEl.querySelector('.appointment-range');
+  rangeSel.innerHTML = '<option value="">Aralık seçiniz</option>';
+  if (!dateStr) return;
+
+  // dateStr formatı "gg-aa-yyyy" → parçala
+  const [yyyy, mm, dd] = dateStr.split('-').map(Number);
+  const dateObj = new Date(yyyy, mm - 1, dd);
+
+  // Türkçe günü al
+  const dow = dateObj.toLocaleDateString("tr-TR", { weekday: "long" });
+
+  // availability dizisinden bu güne uyan aralıkları ekle
+  availability
+    .filter(av => av.day === capitalize(dow))
+    .forEach((r, i) => {
+      const opt = new Option(`${r.start} – ${r.end}`, i);
+      opt.dataset.start = r.start;
+      opt.dataset.end   = r.end;
+      rangeSel.add(opt);
+    });
+
+  rangeSel.onchange = () => populateTimeForRange(modalEl);
+}
+
+    // 3) Seçilen aralığa göre saat dropdown'larını doldur
+    function populateTimeForRange(modalEl) {
+      const rangeSel = modalEl.querySelector('.appointment-range');
+      if (!rangeSel.value) return;
+      const startSel = modalEl.querySelector('.start-select');
+      const endSel   = modalEl.querySelector('.end-select');
+      const rStart   = rangeSel.selectedOptions[0].dataset.start;
+      const rEnd     = rangeSel.selectedOptions[0].dataset.end;
+      const s0 = toMins(rStart), e0 = toMins(rEnd), minDur = 60;
+
+      startSel.innerHTML = '';
+      endSel.innerHTML   = '';
+
+      for (let t=s0; t<=e0-minDur; t+=15) {
+        const hh = toHHMM(t);
+        startSel.add(new Option(hh, hh));
+      }
+
+      const fillEnd = minStart => {
+        endSel.innerHTML = '';
+        const ms = toMins(minStart) + minDur;
+        for (let t=ms; t<=e0; t+=15) {
+          endSel.add(new Option(toHHMM(t), toHHMM(t)));
+        }
+      };
+      fillEnd(startSel.value);
+      startSel.onchange = e => fillEnd(e.target.value);
+    }
+
+    // 4) “Randevu Al” tıklandığında tek slot gönder
+    function handleSingleBooking(modalEl) {
+  const teacherId = modalEl.querySelector('.btn-book').dataset.teacherId;
+  const lesson    = modalEl.querySelector('.appointment-lesson').value;
+  const date      = modalEl.querySelector('.appointment-date-input').value;
+  const start     = modalEl.querySelector('.start-select').value;
+  const end       = modalEl.querySelector('.end-select').value;
+  if (!lesson) return alert('Önce bir ders seçmelisiniz.');
+  if (!date)   return alert('Lütfen bir tarih seçin.');
+  if (!start || !end) return alert('Lütfen saat aralığı seçin.');
+  
+  
+  const [yyyy, mm, dd] = date.split('-').map(Number);
+  const isoDate = `${yyyy}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}`;
+
+  const jsDate = new Date(isoDate);
+  if (isNaN(jsDate.getTime())) {
+    return alert("Invalid date selected.");
+  }
+
+  const dayName = jsDate.toLocaleDateString("tr-TR", { weekday: "long" });
+  
+  fetch('/api/appointments/book', {
+    method:      'POST',
+    credentials: 'include',
+    headers:     { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      teacherId,
+      lesson,
+      appointment_date: jsDate,
+      slots: [{
+        day:   dayName,
+        start, end
+      }]
+    })
+  })
+  .then(async res => {
+    console.log('HTTP status:', res.status, 'ok:', res.ok);
+    let text = await res.text();
+    console.log('Raw response body:', text);
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch(parseErr) {
+      console.error('JSON parse error:', parseErr);
+      return alert('Sunucudan geçersiz JSON döndü.');
+    }
+    if (data.success) {
+      alert('Randevu başarıyla alındı!');
+      bootstrap.Modal.getInstance(modalEl).hide();
+    } else {
+      console.warn('API 오류 yanıtı:', data);
+      alert('Hata: ' + data.message);
+    }
+  })
+  .catch(err => {
+    console.error('Fetch hatası:', err);
+    alert('Sunucu hatası, detaylara console’dan bakın.');
+  });
+}
+
+    // yardımcı fonksiyonlar
+    function toMins(hm){ const [h,m]=hm.split(':').map(Number); return h*60+m; }
+    function toHHMM(m){ const h=Math.floor(m/60), mm=m%60; return `${String(h).padStart(2,'0')}:${String(mm).padStart(2,'0')}`; }
+    function capitalize(s){ return s.charAt(0).toUpperCase()+s.slice(1).toLowerCase(); }
+
+    // filtre form + temizle
+    document.getElementById("filterForm").addEventListener("submit", e=>{ e.preventDefault(); applyFilters(); });
+    document.getElementById("clearFilters").addEventListener("click", () => {
+      ["subject","minPrice","maxPrice","city"].forEach(id=>document.getElementById(id).value="");
+      document.querySelectorAll(".day-checkbox").forEach(cb=>cb.checked=false);
+      document.getElementById("dayDropdownBtn").textContent="Tüm Günler";
+      applyFilters();
+    });
+    document.querySelectorAll('.day-checkbox').forEach(cb => {
+      cb.addEventListener('change',()=>{
+        const sel = Array.from(document.querySelectorAll('.day-checkbox:checked')).map(c=>c.value);
+        document.getElementById("dayDropdownBtn").textContent = sel.length? sel.join(', '):"Tüm Günler";
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", fetchTeachers);
+  </script>
+</body>
+</html>

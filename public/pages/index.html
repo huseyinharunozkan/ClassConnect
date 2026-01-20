@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassConnect</title>
+
+    <script src="../js/head_loader.js" defer></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/home_page.css">
+
+</head>
+
+<style>
+    :root {
+        --primary: #0F62FE;
+        --secondary: #64b5f6;
+        --bg: #F3F6FA;
+        --dark: #1f1f1f;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: var(--bg);
+        color: var(--dark);
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #43cad6, var(--secondary));
+        height: 100vh;
+        color: white;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        margin-top: -55px;
+        padding: 65px 150px 0 150px;
+    }
+
+    .hero h1 {
+        font-size: 3.4rem;
+        font-weight: 800;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        opacity: 0.95;
+        max-width: 600px;
+    }
+
+    .hero .btn-light {
+        background-color: #ffffff;
+        color: #1f74ba;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 16px 28px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hero .btn-light:hover {
+        background-color: #f5dea1;
+        color: #575142;
+        transform: scale(1.03);
+    }
+
+    .hero-image img {
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        width: 900px;
+    }
+
+    /* .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='https://www.w3.org/2000/svg'%3E%3Cpath fill='%23f3f6fa' fill-opacity='1' d='M0,160L80,165.3C160,171,320,181,480,165.3C640,149,800,107,960,85.3C1120,64,1280,64,1360,64L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: cover;
+    } */
+
+    .section {
+        padding: 100px 0;
+    }
+
+    .section-title {
+        font-size: 2.6rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .card {
+        border: none;
+        border-radius: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            flex-direction: column;
+            padding: 100px 0 60px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        .hero-image {
+            padding: 1rem;
+        }
+    }
+</style>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Navbar yükleme alanı -->
+    <div id="navbar-placeholder"></div>
+    <script src="../js/navbar_loader.js"></script>
+
+    <!-- main kısmı navbar ve footer arası -->
+    <main class="flex-fill">
+        <!-- hero -->
+        <section class="hero">
+            <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between">
+                <div class="hero-content w-100 text-lg-start w-100 mb-4 mb-lg-0">
+                    <h1 class="fw-bold mb-3">Üniversiteli Eğitmenlerle Yüz Yüze Özel Ders</h1>
+                    <p class="lead mb-4">
+                        ClassConnect, seni yaşına en yakın, güncel bilgileri bilen eğitmenlerle birebir ve güvenli bir
+                        öğrenme
+                        ortamında buluşturur.
+                    </p>
+                    <a href="#hakkimizda" class="btn btn-light btn-lg px-4 py-2 shadow">Hemen Keşfet</a>
+                </div>
+            </div>
+            <div class="hero-image w-100 text-center text-lg-end w-100">
+                <img src="../media/Ghibli_2.png" alt="ClassConnect Hero" class="img-fluid shadow-lg" />
+            </div>
+            <div class="wave"></div>
+        </section>
+
+
+        <!-- Hakkımızda -->
+        <section class="section" id="hakkimizda">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Hakkımızda</h2>
+                <p class="lead text-center" data-aos="fade-up">
+                    ClassConnect, üniversite öğrencilerinin eğitmenlik yapmasını sağlayan bir eğitim platformudur. Bu
+                    platform, ilkokul ve
+                    lise öğrencilerini, üniversiteli eğitmenlerle birebir yüz yüze derslerde bir araya getirir.
+                </p>
+            </div>
+        </section>
+
+        <!-- Neden Üniversiteli Eğitmen -->
+        <section class="section" style="background: linear-gradient(to right, #e3f2fd, #f3e5f5);" id="neden">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-right">Neden Üniversiteli Eğitmen?</h2>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-md-4 d-flex" data-aos="zoom-in">
+                        <div class="card p-4 w-100 h-100">
+                            <h5 class="text-center">Yakın Kuşak İletişimi</h5>
+                            <p>Üniversiteli eğitmenler, öğrencilere yaşça yakın oldukları için daha etkili ve doğal bir
+                                iletişim kurar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card p-4 w-100 h-100">
+                            <h5 class="text-center">Taze Bilgi & Dinamik Yaklaşım</h5>
+                            <p>Güncel müfredata hâkim, motive ve enerjik eğitmenlerle daha kaliteli dersler.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card p-4 w-100 h-100">
+                            <h5 class="text-center">Uygun Fiyat</h5>
+                            <p>Özel ders kalitesi, üniversite öğrencilerinin uygun bütçeli katkılarıyla herkes için
+                                erişilebilir.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Misyon -->
+        <section class="section" id="misyon">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Misyonumuz</h2>
+                <p class="lead text-center" data-aos="fade-up" data-aos-delay="100">
+                    Genç eğitmenlere öğretme deneyimi kazandırırken, öğrencileri sınavlara ve okula yüz yüze birebir
+                    derslerle en etkili şekilde hazırlamak.
+                </p>
+            </div>
+        </section>
+
+        <!-- Vizyon -->
+        <section class="section bg-white" id="vizyon">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Vizyonumuz</h2>
+                <p class="lead text-center" data-aos="fade-up" data-aos-delay="100">
+                    Her şehirde öğrencilerle üniversiteli eğitmenleri güvenli, yüz yüze ve birebir eğitimle buluşturan
+                    lider
+                    platform olmak.
+                </p>
+            </div>
+        </section>
+
+        <!-- Güvenlik -->
+        <section class="section" style="background: linear-gradient(to right, #e3f2fd, #f3e5f5);" id="guvenlik">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-right">Güvenli Eğitim Ortamı</h2>
+                <p class="lead text-center" data-aos="fade-up" data-aos-delay="100">
+                    Eğitmenlerimiz kimlik ve üniversite e-postaları ile doğrulanır. Dersler yalnızca kayıtlı
+                    kullanıcılar
+                    arasında gerçekleşir.
+                </p>
+                <div class="row mt-4">
+                    <div class="col-md-4 d-flex" data-aos="fade-up" data-aos-delay="150">
+                        <div class="card p-4 w-100 h-100">
+                            <h5 class="text-center">Profil Doğrulama</h5>
+                            <p>Eğitmenler yalnızca üniversite e-postaları ve resmi belgelerle sisteme kabul edilir.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex" data-aos="fade-up" data-aos-delay="250">
+                        <div class="card p-4 w-100 h-100">
+                            <h5 class="text-center">Ders Takibi</h5>
+                            <p>Yüz yüze dersler çift taraflı başlatılıp sonlandırılır; sistem üzerinden zaman ve içerik
+                                kontrolü
+                                yapılır.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex" data-aos="fade-up" data-aos-delay="350">
+                        <div class="card p-4 w-100 h-100">
+                            <h5 class="text-center">Acil Durum Butonu</h5>
+                            <p>Ders esnasında kullanılabilecek "Acil Durum" butonu, güvenliği artırır.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- İletişim -->
+        <section class="section" id="iletisim">
+            <div class="container text-center">
+                <h2 class="section-title" data-aos="fade-up">Bize Ulaşın</h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    classconnecteam@gmail.com
+                </p>
+            </div>
+        </section>
+
+
+    </main>
+
+
+    <!-- Yukarı Çık Butonu -->
+    <button id="backToTopBtn" onclick="scrollToTop()" aria-label="Yukarı Çık">
+        ↑
+    </button>
+
+    <!-- footer -->
+    <footer id="footer-placeholder" class="mt-auto">
+        <!-- Footer script -->
+        <script src="../js/footer_loader.js"></script>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-in-out' });
+        gsap.from(".hero h1", { duration: 1, y: -40, opacity: 0 });
+        gsap.from(".hero p", { duration: 1, y: 20, opacity: 0, delay: 0.3 });
+
+        window.onscroll = function () {
+            const btn = document.getElementById("backToTopBtn");
+            if (document.documentElement.scrollTop > 135) {
+                btn.style.display = "flex";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+    </script>
+</body>
+
+</html>
